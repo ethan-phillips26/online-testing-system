@@ -10,14 +10,17 @@ import java.util.Scanner;
 public class Login {
     
     public static Users loginPrompt() {
-        Scanner scan = new Scanner(System.in);
+        return loginPrompt(new Scanner(System.in));
+    }
 
+    public static Users loginPrompt(Scanner scan) {
         System.out.println("\n\n\n\nLogin");
+
         System.out.print("Username: ");
-        String uname = scan.next();
+        String uname = scan.nextLine().trim();
 
         System.out.print("Password: ");
-        String pw = scan.next();
+        String pw = scan.nextLine();
 
         Users u = findUserByCredentials(uname, pw);
         if (u == null) {

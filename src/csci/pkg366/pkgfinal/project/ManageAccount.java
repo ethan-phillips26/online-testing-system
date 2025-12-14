@@ -10,9 +10,11 @@ import java.util.Scanner;
 
 public class ManageAccount {
 
-    private static final Scanner scan = new Scanner(System.in);
-
     public static Users createAccount() {
+        return createAccount(new Scanner(System.in));
+    }
+
+    public static Users createAccount(Scanner scan) {
         System.out.println("\n==== Create Account ====");
 
         System.out.print("First name: ");
@@ -78,6 +80,10 @@ public class ManageAccount {
 
  
     public static void updateAccount(Users user) {
+        updateAccount(new Scanner(System.in), user);
+    }
+
+    public static void updateAccount(Scanner scan, Users user) {
         if (user == null) {
             System.out.println("No user logged in");
             return;
@@ -185,6 +191,10 @@ public class ManageAccount {
 
 
     public static boolean deleteAccount(Users user) {
+        return deleteAccount(new Scanner(System.in), user);
+    }
+
+    public static boolean deleteAccount(Scanner scan, Users user) {
         if (user == null) {
             System.out.println("No user logged in.");
             return false;
