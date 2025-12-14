@@ -43,7 +43,7 @@ public class Answers implements Serializable {
     private Boolean isCorrect;
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     @ManyToOne(optional = false)
-    private Questions questionId;
+    private Integer questionId;
 
     public Answers() {
     }
@@ -81,11 +81,11 @@ public class Answers implements Serializable {
         this.isCorrect = isCorrect;
     }
 
-    public Questions getQuestionId() {
+    public Integer getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(Questions questionId) {
+    public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
     }
 

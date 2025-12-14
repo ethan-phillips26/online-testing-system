@@ -38,6 +38,7 @@ public class TestCreator {
                         answer1.setIsCorrect(Boolean.FALSE);
                 }
                 collection.add(answer1);
+                answer1.setQuestionId(q.getQuestionId());
             case 2:
                 System.out.print("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
@@ -63,6 +64,8 @@ public class TestCreator {
                 }
                 collection.add(answer1);
                 collection.add(answer2);
+                answer1.setQuestionId(q.getQuestionId());
+                answer2.setQuestionId(q.getQuestionId());
             case 3:
                 System.out.print("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
@@ -100,6 +103,9 @@ public class TestCreator {
                 collection.add(answer1);
                 collection.add(answer2);
                 collection.add(answer3);
+                answer1.setQuestionId(q.getQuestionId());
+                answer2.setQuestionId(q.getQuestionId());
+                answer3.setQuestionId(q.getQuestionId());
             case 4:
                 System.out.print("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
@@ -149,6 +155,10 @@ public class TestCreator {
                 collection.add(answer2);
                 collection.add(answer3);
                 collection.add(answer4);
+                answer1.setQuestionId(q.getQuestionId());
+                answer2.setQuestionId(q.getQuestionId());
+                answer3.setQuestionId(q.getQuestionId());
+                answer4.setQuestionId(q.getQuestionId());
         }
         q.setAnswersCollection(collection);
     }
