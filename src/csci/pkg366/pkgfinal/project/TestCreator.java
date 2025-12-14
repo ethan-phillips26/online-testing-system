@@ -3,9 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package csci.pkg366.pkgfinal.project;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Collection;
 import java.util.ArrayList;
+import java.sql.Statement;
 
 /**
  *
@@ -13,6 +19,10 @@ import java.util.ArrayList;
  */
 public class TestCreator {
     Scanner scan = new Scanner(System.in);
+    static String jdbcURL = "jdbc:postgresql://localhost:5432/SimpleCompany";
+    static String username = "postgres";
+    static String password = "Ahegaoahegao1!";
+    
     public void AnswerBuilder(Questions q){
         String correct = "";
         Answers answer1 = new Answers();
@@ -38,7 +48,7 @@ public class TestCreator {
                         answer1.setIsCorrect(Boolean.FALSE);
                 }
                 collection.add(answer1);
-                answer1.setQuestionId(q.getQuestionId());
+                answer1.setQuestionId(q);
             case 2:
                 System.out.println("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
@@ -64,8 +74,8 @@ public class TestCreator {
                 }
                 collection.add(answer1);
                 collection.add(answer2);
-                answer1.setQuestionId(q.getQuestionId());
-                answer2.setQuestionId(q.getQuestionId());
+                answer1.setQuestionId(q);
+                answer2.setQuestionId(q);
             case 3:
                 System.out.println("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
@@ -103,9 +113,9 @@ public class TestCreator {
                 collection.add(answer1);
                 collection.add(answer2);
                 collection.add(answer3);
-                answer1.setQuestionId(q.getQuestionId());
-                answer2.setQuestionId(q.getQuestionId());
-                answer3.setQuestionId(q.getQuestionId());
+                answer1.setQuestionId(q);
+                answer2.setQuestionId(q);
+                answer3.setQuestionId(q);
             case 4:
                 System.out.println("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
@@ -155,10 +165,10 @@ public class TestCreator {
                 collection.add(answer2);
                 collection.add(answer3);
                 collection.add(answer4);
-                answer1.setQuestionId(q.getQuestionId());
-                answer2.setQuestionId(q.getQuestionId());
-                answer3.setQuestionId(q.getQuestionId());
-                answer4.setQuestionId(q.getQuestionId());
+                answer1.setQuestionId(q);
+                answer2.setQuestionId(q);
+                answer3.setQuestionId(q);
+                answer4.setQuestionId(q);
         }
         q.setAnswersCollection(collection);
     }
@@ -182,7 +192,27 @@ public class TestCreator {
         
     }
     
-    public String DisplayCreatedTests(){
-        return "";
+    public void DisplayCreatedTests(Users id){
+        try{
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+            String getTests = "SELECT * FROM Tests WHERE creator_id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(getTests);
+            pstmt.setObject(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                System.out.println("Test Title: " + rs.getString("title"));
+                System.out.println("dept name: " + rs.getString("department_name"));
+                System.out.println("--------------------");
+            }
+            System.out.println("Done");
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("Cannot load postgresql driver");
+        }
+        catch(SQLException e){
+            System.out.println("Cannot connect");
+        }
     }
 }
