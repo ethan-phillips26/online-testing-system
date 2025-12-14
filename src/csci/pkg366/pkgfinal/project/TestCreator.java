@@ -26,9 +26,9 @@ public class TestCreator {
         
         switch(input){
             case 1:
-                System.out.print("Answer 1:");
+                System.out.println("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -40,9 +40,9 @@ public class TestCreator {
                 collection.add(answer1);
                 answer1.setQuestionId(q.getQuestionId());
             case 2:
-                System.out.print("Answer 1:");
+                System.out.println("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -51,9 +51,9 @@ public class TestCreator {
                     case("N"):
                         answer1.setIsCorrect(Boolean.FALSE);
                 }
-                System.out.print("Answer 2:");
+                System.out.println("Answer 2:");
                 answer2.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -67,9 +67,9 @@ public class TestCreator {
                 answer1.setQuestionId(q.getQuestionId());
                 answer2.setQuestionId(q.getQuestionId());
             case 3:
-                System.out.print("Answer 1:");
+                System.out.println("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -78,9 +78,9 @@ public class TestCreator {
                     case("N"):
                         answer1.setIsCorrect(Boolean.FALSE);
                 }
-                System.out.print("Answer 2:");
+                System.out.println("Answer 2:");
                 answer2.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -89,9 +89,9 @@ public class TestCreator {
                     case("N"):
                         answer2.setIsCorrect(Boolean.FALSE);
                 }
-                System.out.print("Answer 2:");
+                System.out.println("Answer 3:");
                 answer3.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -107,9 +107,9 @@ public class TestCreator {
                 answer2.setQuestionId(q.getQuestionId());
                 answer3.setQuestionId(q.getQuestionId());
             case 4:
-                System.out.print("Answer 1:");
+                System.out.println("Answer 1:");
                 answer1.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -118,9 +118,9 @@ public class TestCreator {
                     case("N"):
                         answer1.setIsCorrect(Boolean.FALSE);
                 }
-                System.out.print("Answer 2:");
+                System.out.println("Answer 2:");
                 answer2.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -129,9 +129,9 @@ public class TestCreator {
                     case("N"):
                         answer2.setIsCorrect(Boolean.FALSE);
                 }
-                System.out.print("Answer 1:");
+                System.out.println("Answer 3:");
                 answer3.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -140,9 +140,9 @@ public class TestCreator {
                     case("N"):
                         answer3.setIsCorrect(Boolean.FALSE);
                 }
-                System.out.print("Answer 2:");
+                System.out.println("Answer 4:");
                 answer4.setAnswerText(scan.nextLine());
-                System.out.print("Is it correct(Y/N)?:");
+                System.out.println("Is it correct(Y/N)?:");
                 correct = scan.nextLine();
                 correct = correct.toUpperCase();
                 switch(correct){
@@ -164,7 +164,18 @@ public class TestCreator {
     }
     
     public void QuestionBuilder(){
-        
+        Questions question = new Questions();
+        String textInput = "";
+        String enterAnsNow = "N";
+        System.out.println("Enter the question:");
+        textInput = scan.nextLine();
+        question.setQuestionText(textInput);
+        System.out.println("Set answers now(Y/N)?:");
+        enterAnsNow = scan.nextLine();
+        enterAnsNow = enterAnsNow.toUpperCase();
+        if(enterAnsNow.equals("Y")){
+            AnswerBuilder(question);
+        }
     }
     
     public void TestBuilder(){
