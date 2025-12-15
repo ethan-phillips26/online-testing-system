@@ -15,162 +15,10 @@ import java.util.LinkedList;
  *
  * @author benjk
  */
-public class AdminFunctionality {
-    private static String jdbcURL = "jdbc:postgresql://localhost:5432/FinalProject";
-    private static String username = "postgres";
-    private static String password = "Biden&?43";
-    
-    
-    public static void showAdminOptions() {
-        Scanner scan = new Scanner(System.in);
-        while(true) {
-            System.out.print("\n\n\n\nWhat do you want to do?"
-                    + "\n1) Create new user"
-                    + "\n2) Create new test"
-                    + "\n3) Manage existing user"
-                    + "\n4) Manage existing test"
-                    + "\n5) Logout"
-                    + "\nEnter a number: ");
-            String input = scan.next();
-            switch (input) {
-                case "1":
-                    //add create user
-                    break;
-                case "2":
-                    //add create test
-                    break;
-                case "3":
-                    userFind();
-                    break;
-                case "4":
-                    testFind();
-                    break;
-                case "5":
-                    return;
-                default:
-                    System.out.println("Enter a valid number");
-            }
-        }
-    }
-    
-    public static void testFind() {
-        Scanner scan = new Scanner(System.in);
-        
-    }
-    
-    public static void testCreate() {
-        
-    }
-    
-    public static void questionCreate() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\n\n\n\nCreating new question");
-        System.out.print("Enter question text: ");
-        String text = scan.next();
-        
-        int points;
-        while(true) {
-            String input = scan.next();
-            try {
-                System.out.print("Enter question points: ");
-                points = Integer.parseInt(input);
-                break;
-            } catch (NumberFormatException nfe) {
-                System.out.println("enter an integer");
-            }
-        }
-        
-        Questions.createQuestion(text, );
-    }
-    
-    public static void answerCreate(int questionID) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\n\n\n\nCreating new answer");
-        System.out.print("Enter answer text: ");
-        String text = scan.next();
-        System.out.print("Is the answer correct? \n"
-                + "Enter y for yes and anything else for no: ");
-        String correct = scan.next();
-        Boolean isCorrect = correct.equals("y");
-        Answers.createAnswer(text, isCorrect, questionID);
-    }
-    
-    public static void editAnswer(Answers answer) {
-        if (answer == null) return;
-        Scanner scan = new Scanner(System.in);
-        while (true) {
-            System.out.print("\n\n\n\nEditing answer with id: " + answer.getAnswerId() 
-                    + "\n1) Text: " + answer.getAnswerText()
-                    + "\n2) isCorrect: " + answer.getIsCorrect()
-                    + "\n3) delete user"
-                    + "\n4) cancel"
-                    + "\nEnter number: ");
-            String option = scan.next();
-            switch (option) {
-                case "1":
-                    System.out.print("Enter new answer text: ");
-                    String text = scan.next();
-                    Answers.updateAnswerText(text, answer.getAnswerId());
-                    break;
-                case "2":
-                    System.out.print("Is the answer correct? \n"
-                            + "Enter y for yes and anything else for no: ");
-                    String correct = scan.next();
-                    Boolean isCorrect = correct.equals("y");
-                    Answers.updateIsCorrect(isCorrect, answer.getAnswerId());
-                    break;
-                case "3":
-                    Answers.deleteAnswer(answer.getAnswerId());
-                    return;
-                case "4":
-                    return;
-            }
-        }
-    }
-    
-    public static void viewAnswerList(LinkedList<Answers> list) {
-        Scanner scan = new Scanner(System.in);
-        
-        System.out.println("\n\n\n\nSelect Answer: ");
-        Answers[] part = new Answers[5];
-        for(int i = 0; i < 5 && !list.isEmpty(); i++){
-            Answers answer = list.peek();
-            System.out.println((i + 1) + ") " 
-                + "Answer ID: " + answer.getAnswerId() 
-                + ", Answer Text: " + answer.getAnswerText()
-                + ", Is Correct: " + answer.getIsCorrect());
-            part[i] = list.pop();
-        }
-        System.out.println("6) cancel");
-        System.out.print("Enter number: ");
-        String input = scan.next();
-            
-        switch (input) {
-            case "1":
-                if (part[0] != null)
-                    editAnswer(part[0]);
-                return;
-            case "2":
-                if (part[1] != null)
-                    editAnswer(part[1]);
-                return;
-            case "3":
-                if (part[2] != null)
-                    editAnswer(part[2]);
-                return;
-            case "4":
-                if (part[3] != null)
-                    editAnswer(part[3]);
-                return;
-            case "5":
-                if (part[4] != null)
-                    editAnswer(part[4]);
-        }
-    }
-    
-    public static void createUser() {
+public class ManagerFunctionality {
+  
+    public static void createUser(Scanner scan) {
         System.out.println("\n\n\n\nCreate new user: ");
-        Scanner scan = new Scanner(System.in);
         String firstname;
         String lastname;
         String usertype;
@@ -191,14 +39,12 @@ public class AdminFunctionality {
     
     
     
-    public static void userFind() {
-        Scanner scan = new Scanner(System.in);
+    public static void userFind(Scanner scan) {
        
         //Allow admin to lookup user
         
         //choose user lookup method
-        boolean selected = false;
-        while (!selected) {
+        while (true) {
             System.out.print(
                     "\n\n\n\nEnter User lookup method\n"
                     + "1) user_id\n"
@@ -220,8 +66,7 @@ public class AdminFunctionality {
                         break;
                     }
                     user = Users.getUserById(user_id);
-                    editUser(user);
-                    selected = true;
+                    editUser(user, scan);
                     break;
                     
                 case "2":
@@ -231,7 +76,7 @@ public class AdminFunctionality {
                     System.out.print("Enter user firstname: ");
                     String firstname = scan.next();
                     LinkedList<Users> list = Users.getUsersByName(firstname, lastname);
-                    viewUserList(list);
+                    viewUserList(list, scan);
                     break;
                     
                 case "3":
@@ -240,8 +85,7 @@ public class AdminFunctionality {
                     System.out.print("Lookup user by username: ");
                     String userName = scan.next();
                     user = Users.getUserByUsername(userName);
-                    editUser(user);
-                    selected = true;
+                    editUser(user, scan);
                     break;
                 case "4":
                     return;
@@ -252,8 +96,7 @@ public class AdminFunctionality {
         }
     }
     
-    public static void viewUserList(LinkedList<Users> list) {
-        Scanner scan = new Scanner(System.in);
+    public static void viewUserList(LinkedList<Users> list, Scanner scan) {
         while (true) {
             System.out.println("\n\n\n\nSelect User: ");
             Users[] part = new Users[5];
@@ -278,23 +121,23 @@ public class AdminFunctionality {
             switch (input) {
                 case "1":
                     if (part[0] != null)
-                        editUser(part[0]);
+                        editUser(part[0], scan);
                     return;
                 case "2":
                     if (part[1] != null)
-                        editUser(part[1]);
+                        editUser(part[1], scan);
                     return;
                 case "3":
                     if (part[2] != null)
-                        editUser(part[2]);
+                        editUser(part[2], scan);
                     return;
                 case "4":
                     if (part[3] != null)
-                        editUser(part[3]);
+                        editUser(part[3], scan);
                     return;
                 case "5":
                     if (part[4] != null)
-                        editUser(part[4]);
+                        editUser(part[4], scan);
                     return;
                 case "6":
                     if (list.isEmpty()) return;
@@ -306,9 +149,8 @@ public class AdminFunctionality {
         }
     }
     
-    public static void editUser(Users user) {
-        if (user == null) return;
-        Scanner scan = new Scanner(System.in);
+    public static void editUser(Users user, Scanner scan) {
+        if (user == null || user.getUserId() == null) return;
         while (true) {
             System.out.print("\n\n\n\nEditing user with id: " + user.getUserId() 
                     + "\n1) firstname: " + user.getFirstname()

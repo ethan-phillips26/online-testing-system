@@ -1,13 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package csci.pkg366.pkgfinal.project;
 
-/**
- *
- * @author benjk
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DatabaseConnection {
-    
+    public static final String jdbcURL = "jdbc:postgresql://localhost:5432/FinalProject";
+    public static final String username = "postgres";
+    public static final String password = "Biden&?43";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(jdbcURL, username, password);
+    }
 }

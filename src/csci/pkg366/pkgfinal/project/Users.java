@@ -62,10 +62,6 @@ public class Users implements Serializable {
     private String userType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "creatorId")
     private Collection<Tests> testsCollection;
-    
-    private static String jdbcURL = "jdbc:postgresql://localhost:5432/FinalProject";
-    private static String username2 = "postgres";
-    private static String password2 = "Biden&?43";
 
     public Users() {
     }
@@ -168,7 +164,7 @@ public class Users implements Serializable {
         try {
             //temp connection. We should make a connection class.
             
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "SELECT * FROM users WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setInt(1, id);
@@ -190,7 +186,7 @@ public class Users implements Serializable {
     
     public static Users getUserByUsername(String _username) {
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "SELECT * FROM users WHERE username = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setString(1, _username);
@@ -213,7 +209,7 @@ public class Users implements Serializable {
      public static LinkedList<Users> getUsersByName(String firstn, String lastn) {
         LinkedList<Users> list = new LinkedList<>();
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "SELECT * FROM users WHERE firstname = ? AND lastname = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setString(1, firstn);
@@ -233,14 +229,13 @@ public class Users implements Serializable {
             }
             return list;
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
             return list;
         }
     }
      
     public static void updateFirstname(String firstn, int id) {
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "UPDATE users SET firstname = ? WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setString(1, firstn);
@@ -253,7 +248,7 @@ public class Users implements Serializable {
     
     public static void updateLastname(String lastn, int id) {
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "UPDATE users SET lastname = ? WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setString(1, lastn);
@@ -270,7 +265,7 @@ public class Users implements Serializable {
                 System.out.println("invalid user type");
                 return;
             }
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "UPDATE users SET userType = ? WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setString(1, userType);
@@ -283,7 +278,7 @@ public class Users implements Serializable {
     
     public static void updateUsername(String username, int id) {
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "UPDATE users SET username = ? WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setString(1, username);
@@ -296,7 +291,7 @@ public class Users implements Serializable {
     
     public static void updatePassword(String password, int id) {
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "UPDATE users SET password = ? WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setString(1, password);
@@ -309,7 +304,7 @@ public class Users implements Serializable {
     
     public static void updateId(int newId, int id) {
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "UPDATE users SET user_id = ? WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setInt(1, newId);
@@ -322,7 +317,7 @@ public class Users implements Serializable {
     
     public static void deleteUser(int id) {
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "DELETE FROM users WHERE user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
             pstmt.setInt(1, id);
@@ -339,7 +334,7 @@ public class Users implements Serializable {
                 return;
             }
             
-            Connection connection = DriverManager.getConnection(jdbcURL, username2, password2);
+            Connection connection = DatabaseConnection.getConnection();
             String getUsers = "INSERT INTO users (firstname, lastname, user_type, username, password)"
                     + " VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = connection.prepareStatement(getUsers);
@@ -353,5 +348,4 @@ public class Users implements Serializable {
             System.out.println("error creating");
         }
     }
-    
 }
