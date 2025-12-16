@@ -50,8 +50,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr1 = true;
+                        break;
                     case("N"):
                         corr1 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -73,8 +75,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr1 = true;
+                        break;
                     case("N"):
                         corr1 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -94,8 +98,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr2 = true;
+                        break;
                     case("N"):
                         corr2 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -117,8 +123,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr1 = true;
+                        break;
                     case("N"):
                         corr1 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -138,8 +146,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr2 = true;
+                        break;
                     case("N"):
                         corr2 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -159,8 +169,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr3 = true;
+                        break;
                     case("N"):
                         corr3 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -182,8 +194,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr1 = true;
+                        break;
                     case("N"):
                         corr1 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -203,8 +217,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr2 = true;
+                        break;
                     case("N"):
                         corr2 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -224,8 +240,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr3 = true;
+                        break;
                     case("N"):
                         corr3 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -245,8 +263,10 @@ public class TestCreator {
                 switch(correct){
                     case("Y"):
                         corr4 = true;
+                        break;
                     case("N"):
                         corr4 = false;
+                        break;
                 }
                 try (Connection conn = DatabaseConnection.getConnection();
                     PreparedStatement ps = conn.prepareStatement(sql)) {
