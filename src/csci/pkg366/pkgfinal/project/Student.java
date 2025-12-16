@@ -143,11 +143,11 @@ public class Student {
                 try {
                     idx = Integer.parseInt(choice) - 1;
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid choice. Skipped.");
+                    System.out.println("Invalid choice; skipped.");
                     continue;
                 }
                 if (idx < 0 || idx >= answers.size()) {
-                    System.out.println("Out of range. Skipped.");
+                    System.out.println("Out of range; skipped.");
                     continue;
                 }
 
@@ -174,7 +174,7 @@ public class Student {
      */
     public String ViewPastTests() {
         StringBuilder out = new StringBuilder();
-        out.append("\n==== Past Tests ====\n");
+        out.append("==== Past Tests ====\n");
 
         Integer userId = extractId(user, "getUserId", "getUser_id", "getUserID", "getId");
         if (userId == null) {
