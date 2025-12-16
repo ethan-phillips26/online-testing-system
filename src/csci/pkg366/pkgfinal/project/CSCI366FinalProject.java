@@ -15,8 +15,7 @@ public class CSCI366FinalProject {
         
 
         while (true) {
-            System.out.println("\n
-                               == Online Testing System ====");
+            System.out.println("\n== Online Testing System ====");
             System.out.println("1) Login");
             System.out.println("2) Create Account");
             System.out.println("3) Exit");
@@ -337,14 +336,9 @@ private static boolean managerMenu(Scanner scan, Users user) {
             return false;
         
         case "5":
-                    if (!isManager) {
-                        System.out.println("Invalid option.");
-                        break;
-                    }
-                    clearConsole();
-                    ManagerFunctionality.viewLeaderboard();
-                    pause(scan);
-                    break;
+            ManagerFunctionality.viewLeaderboard();
+            pause(scan);
+            return false;
 
         default:
             System.out.println("Invalid option.");
