@@ -5,6 +5,13 @@ import java.sql.*;
 import java.util.*;
 
 /**
+ * Console-driven "Student" features backed by PostgreSQL.
+ *
+ * Notes:
+ * - This class intentionally uses JDBC (via DatabaseConnection) and avoids
+ *   relying on JPA mappings, because the schema details in sql.txt are incomplete.
+ * - It tries to be resilient to small column-name differences by using metadata
+ *   and reflection where needed.
  * 
  * @author Hariom Pughat
  */
